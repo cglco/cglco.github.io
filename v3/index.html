@@ -651,6 +651,13 @@ body::after {
   .courses { margin-top: calc(var(--u) * 3.4); }
   .course__name { font-size: calc(var(--u) * 4.5); }
 }
+/* рисунок 26.10 (чёрный круг): conglomérat · choisir le meilleur — ниже, отдельно от CGL, ближе к большой линии */
+.kind { margin-top: clamp(26px, 4.4vh, 40px); }
+.menu { margin-top: -6px; }
+@media (max-width: 767px) {
+  .kind { margin-top: calc(var(--u) * 6.4); }
+  .menu { margin-top: calc(var(--u) * -2.6); }
+}
 </style>
 
 <svg class="defs" aria-hidden="true" focusable="false">
@@ -992,7 +999,8 @@ body::after {
       if (vb && vb.width) sign.style.width = (W * vb.width / (vb.width - 12)).toFixed(1) + "px";
       /* вариант 3: «préparé» и «merci» одного размера, подпись — главная */
       scaleTo(thanks, 0.8 * W);
-      meta.style.fontSize = thanks.style.fontSize;
+      /* «préparé avec amour» меньше «merci» (рисунок 26.10, красная черта) */
+      meta.style.fontSize = (parseFloat(thanks.style.fontSize) * 0.74).toFixed(2) + "px";
     }
     fit();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
