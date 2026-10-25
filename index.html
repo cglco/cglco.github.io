@@ -1155,6 +1155,24 @@ body::after {
     });
   })();
 </script>
+<script>
+  /* компьютер: всё меню на одном экране, без прокрутки — лист масштабируется под высоту окна (26.10) */
+  (function () {
+    var sheet = document.querySelector(".sheet"), page = document.querySelector(".page");
+    if (!sheet || !page || !("zoom" in sheet.style)) return;
+    var mq = window.matchMedia("(min-width: 768px) and (pointer: fine)");
+    function fit() {
+      sheet.style.zoom = "";
+      if (!mq.matches) return;
+      var pad = parseFloat(getComputedStyle(page).paddingTop) || 24;
+      var z = Math.min(1, (window.innerHeight - 2 * pad) / sheet.getBoundingClientRect().height);
+      if (z < 1) sheet.style.zoom = z.toFixed(3);
+    }
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    window.addEventListener("resize", fit);
+  })();
+</script>
 
 </body>
 </html>
