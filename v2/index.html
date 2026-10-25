@@ -868,8 +868,9 @@ body::after {
       /* две линии пишутся один раз, после первого глобуса, и остаются (26.10) */
       if (!linesDone) {
         linesDone = true;
-        if (small) write(small, 0.55, 1.9);
-        if (wave) write(wave, 0.9, 2.5);
+        /* сначала глобус (1,85 с), потом обе линии одновременно */
+        if (small) write(small, 0.9, 1.9);
+        if (wave) write(wave, 0.9, 1.9);
       }
       window.setTimeout(function () {
         emblem.style.transition = "opacity 0.7s ease";
